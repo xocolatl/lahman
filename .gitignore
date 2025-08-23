@@ -1,0 +1,6 @@
+.DS_Store
+*.swp
+lahman_*_csv.zip
+imports/readme*.txt
+imports/*.csv
+exports/**/*.csv
