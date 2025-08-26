@@ -589,3 +589,7 @@ CREATE TABLE base.umpires (
     last_game DATE
 );
 
+CREATE TABLE base.version (
+    year INTEGER,
+    edition INTEGER
+);

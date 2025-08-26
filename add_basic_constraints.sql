@@ -412,3 +412,5 @@ ALTER TABLE base.umpires ADD PRIMARY KEY (umpire);
 ALTER TABLE base.umpires ALTER COLUMN jersey SET NOT NULL;
 ALTER TABLE base.umpires ALTER COLUMN first_game SET NOT NULL;
 --ALTER TABLE base.umpires ALTER COLUMN last_game SET NOT NULL;
+
+ALTER TABLE base.version ADD PRIMARY KEY (year, edition);

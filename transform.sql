@@ -11,6 +11,7 @@ SET search_path TO '';
 \ir extra_data.sql
 \ir add_basic_constraints.sql
 \ir add_foreign_constraints.sql
+\ir add_indexes.sql
 \ir recreate_lahman_views.sql
 
 SET search_path TO base, lahman;

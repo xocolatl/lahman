@@ -62,3 +62,6 @@ INSERT INTO base.postseason_rounds (round, description)
            (   'WS', 'World Series')
 ;
 
+INSERT INTO base.version (year, edition)
+    VALUES (2024, 4)
+;
