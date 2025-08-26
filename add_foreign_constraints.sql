@@ -335,11 +335,13 @@ ALTER TABLE base.states
         ON UPDATE CASCADE
 ;
 
+/* This can't work until period foreign keys are implemented.
 ALTER TABLE base.teams
     ADD FOREIGN KEY (franchise)
-        REFERENCES base.team_franchises
+        REFERENCES base.franchises
         ON UPDATE CASCADE
 ;
+*/
 
 ALTER TABLE base.umpire_crew_members
     ADD FOREIGN KEY (year, crew)

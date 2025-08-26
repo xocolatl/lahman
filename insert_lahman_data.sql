@@ -670,15 +670,6 @@ INSERT INTO base.shared_player_awards
     FROM import."AwardsSharePlayers"
 ;
 
-INSERT INTO base.team_franchises (franchise, name, active, "NAassoc")
-    SELECT
-        "franchID",
-        "franchName",
-        CAST(NULLIF("active", 'NA') AS BOOLEAN),
-        "NAassoc"
-    FROM import."TeamsFranchises"
-;
-
 INSERT INTO base.teams
     SELECT
         "franchID",

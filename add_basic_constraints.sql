@@ -347,11 +347,6 @@ ALTER TABLE base.shared_player_awards ALTER COLUMN points_max SET NOT NULL;
 
 ALTER TABLE base.states ADD PRIMARY KEY (country, state);
 
-ALTER TABLE base.team_franchises ADD PRIMARY KEY (franchise);
-ALTER TABLE base.team_franchises ALTER COLUMN name SET NOT NULL;
--- ALTER TABLE base.team_franchises ALTER COLUMN active SET NOT NULL;
--- ALTER TABLE base.team_franchises ALTER COLUMN "NAassoc" SET NOT NULL;
-
 ALTER TABLE base.teams ADD PRIMARY KEY (franchise, year);
 -- ALTER TABLE base.teams ALTER COLUMN park SET NOT NULL;
 ALTER TABLE base.teams ALTER COLUMN ranking SET NOT NULL;

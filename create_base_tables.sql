@@ -505,13 +505,6 @@ CREATE TABLE base.states (
     state CHARACTER VARYING
 );
 
-CREATE TABLE base.team_franchises (
-    franchise CHARACTER VARYING,
-    name CHARACTER VARYING,
-    active BOOLEAN,
-    "NAassoc" CHARACTER VARYING
-);
-
 CREATE TABLE base.teams (
     franchise CHARACTER VARYING,
     year INTEGER,

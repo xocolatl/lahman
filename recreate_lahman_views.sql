@@ -627,16 +627,27 @@ CREATE VIEW lahman."Teams" AS
         AND t.year BETWEEN f.first_year AND f.last_year
 ;
 
+/* TODO: Simplify this with QUALIFY when available in PostgreSQL. */
 CREATE VIEW lahman."TeamsFranchises" AS
+    WITH
+        latest (franchise, name, active, "NAassoc", row_num) AS (
+            SELECT
+                franchise,
+                team_name,
+                last_year = (SELECT year FROM base.version),
+                '',
+                ROW_NUMBER() OVER w
+            FROM base.franchises
+            WINDOW
+                w AS (PARTITION BY franchise
+                      ORDER BY last_year DESC)
+        )
     SELECT
         franchise AS "franchID",
         name AS "franchName",
-        CASE WHEN active THEN 'Y'
-             WHEN NOT active THEN 'N'
-             WHEN active IS NULL THEN 'NA'
-        END AS active,
-        "NAassoc"
-    FROM base.team_franchises
+        CASE WHEN active THEN 'Y' ELSE 'N' END AS active
+    FROM latest
+    WHERE row_num = 1
 ;
 
 CREATE VIEW lahman."TeamsHalf" AS

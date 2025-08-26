@@ -374,3 +374,21 @@ INSERT INTO base.player_awards_by_position
     FROM pitchers
 ;
 
+/* fixup NA franchises */
+MERGE INTO base.teams AS t
+    USING (SELECT "franchID", "NAassoc"
+           FROM import."TeamsFranchises"
+           WHERE "active" = 'NA'
+             AND "NAassoc" IS NOT NULL
+          ) AS tf ON tf."franchID" = t.franchise
+    WHEN MATCHED
+    THEN UPDATE SET franchise = tf."NAassoc"
+;
+UPDATE base.franchises AS f
+    SET franchise = tf."NAassoc"
+    FROM import."TeamsFranchises" AS tf
+    WHERE f.franchise = tf."franchID"
+      AND tf."active" = 'NA'
+      AND tf."NAassoc" IS NOT NULL
+;
+
