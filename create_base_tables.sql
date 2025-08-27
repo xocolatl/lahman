@@ -544,7 +544,6 @@ CREATE TABLE base.teams (
     errors INTEGER,
     team_double_plays INTEGER,
     fielding_percentage numeric,
-    home_attendance INTEGER,
     batter_park_factor INTEGER,
     pitcher_park_factor INTEGER,
     lahman45_id CHARACTER VARYING,

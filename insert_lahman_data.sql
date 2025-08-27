@@ -710,7 +710,6 @@ INSERT INTO base.teams
         "E",
         "DP",
         "FP",
-        "attendance",
         "BPF",
         "PPF",
         "teamIDlahman45",

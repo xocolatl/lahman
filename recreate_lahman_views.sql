@@ -616,7 +616,7 @@ CREATE VIEW lahman."Teams" AS
         t.fielding_percentage AS "FP",
         f.team_name AS "name",
         t.park,
-        t.home_attendance AS "attendance",
+        hg.attendance AS "attendance",
         t.batter_park_factor AS "BPF",
         t.pitcher_park_factor AS "PPF",
         t.bbref_id AS "teamIDBR",
@@ -625,6 +625,12 @@ CREATE VIEW lahman."Teams" AS
     FROM base.franchises AS f
     JOIN base.teams AS t ON t.franchise = f.franchise
         AND t.year BETWEEN f.first_year AND f.last_year
+    LEFT JOIN LATERAL (
+        SELECT year, franchise, NULLIF(SUM(hg.attendance), 0)
+        FROM base.home_games AS hg
+        WHERE (year, franchise) = (t.year, t.franchise)
+        GROUP BY year, franchise
+    ) AS hg (year, franchise, attendance) ON TRUE
 ;
 
 /* TODO: Simplify this with QUALIFY when available in PostgreSQL. */
