@@ -46,8 +46,8 @@
 \copy (TABLE lahman."Schools" ORDER BY "schoolID") to exports/output/Schools.csv with csv header
 \copy (TABLE import."SeriesPost" ORDER BY "yearID", round, "teamIDwinner") to exports/input/SeriesPost.csv with csv header
 \copy (TABLE lahman."SeriesPost" ORDER BY "yearID", round, "teamIDwinner") to exports/output/SeriesPost.csv with csv header
-\copy (TABLE import."Teams" ORDER BY "yearID", "franchID") to exports/input/Teams.csv with csv header
-\copy (TABLE lahman."Teams" ORDER BY "yearID", "franchID") to exports/output/Teams.csv with csv header
+\copy (TABLE import."Teams" ORDER BY "yearID", "teamID") to exports/input/Teams.csv with csv header
+\copy (TABLE lahman."Teams" ORDER BY "yearID", "teamID") to exports/output/Teams.csv with csv header
 \copy (TABLE import."TeamsFranchises" ORDER BY "franchID") to exports/input/TeamsFranchises.csv with csv header
 \copy (TABLE lahman."TeamsFranchises" ORDER BY "franchID") to exports/output/TeamsFranchises.csv with csv header
 \copy (TABLE import."TeamsHalf" ORDER BY "yearID", "teamID", "Half") to exports/input/TeamsHalf.csv with csv header
