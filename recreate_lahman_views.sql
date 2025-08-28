@@ -1,6 +1,19 @@
 DROP SCHEMA if exists lahman CASCADE;
 CREATE SCHEMA lahman;
 
+CREATE VIEW base.parks_by_year AS
+    SELECT
+        f.franchise,
+        hg.year,
+        string_agg(p.name, ' / ' ORDER BY hg.first_game) AS park
+    FROM base.franchises AS f
+    JOIN base.home_games AS hg
+        ON hg.franchise = f.franchise
+            AND hg.year BETWEEN f.first_year AND f.last_year
+    JOIN base.parks AS p ON p.park = hg.park
+    GROUP BY f.franchise, hg.year
+;
+
 CREATE VIEW lahman."AllstarFull" AS
     SELECT
         asp.player AS "playerID",
@@ -615,7 +628,7 @@ CREATE VIEW lahman."Teams" AS
         t.team_double_plays AS "DP",
         t.fielding_percentage AS "FP",
         f.team_name AS "name",
-        t.park,
+        pby.park AS "park",
         hg.attendance AS "attendance",
         t.batter_park_factor AS "BPF",
         t.pitcher_park_factor AS "PPF",
@@ -631,6 +644,8 @@ CREATE VIEW lahman."Teams" AS
         WHERE (year, franchise) = (t.year, t.franchise)
         GROUP BY year, franchise
     ) AS hg (year, franchise, attendance) ON TRUE
+    JOIN base.parks_by_year AS pby
+        ON (pby.franchise, pby.year) = (t.franchise, t.year)
 ;
 
 /* TODO: Simplify this with QUALIFY when available in PostgreSQL. */

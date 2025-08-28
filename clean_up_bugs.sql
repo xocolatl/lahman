@@ -391,4 +391,10 @@ UPDATE base.franchises AS f
       AND tf."active" = 'NA'
       AND tf."NAassoc" IS NOT NULL
 ;
-
+UPDATE base.home_games AS hg
+    SET franchise = tf."NAassoc"
+    FROM import."TeamsFranchises" AS tf
+    WHERE hg.franchise = tf."franchID"
+      AND tf."active" = 'NA'
+      AND tf."NAassoc" IS NOT NULL
+;
