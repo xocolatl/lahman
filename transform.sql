@@ -18,3 +18,4 @@ SET search_path TO '';
 SET search_path TO base, lahman;
 COMMIT;
 
+VACUUM (ANALYZE, FREEZE);
