@@ -1,5 +1,6 @@
 ROLLBACK;
 BEGIN;
+CREATE EXTENSION IF NOT EXISTS btree_gist WITH SCHEMA public;
 SET search_path TO '';
 
 \ir create_base_tables.sql
