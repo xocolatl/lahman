@@ -9,7 +9,7 @@ it should be able to be used anywhere with only some minor changes.
 # Load-Transform-Export (LTE)
 
 Git does not know how to record an empty directory as it works on the
-file level, so I have included empty `sentinal` files.
+file level, so I have included empty `sentinel` files.
 
 Your directory structure looks like this:
 
