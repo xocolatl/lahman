@@ -40,6 +40,7 @@ INSERT INTO base.franchises
     FROM group_changes
     GROUP BY franchise, team, team_name, league, division, count
 ;
+analyze base.franchises;
 
 INSERT INTO base.allstar_games (game, date)
     SELECT DISTINCT
