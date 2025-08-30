@@ -169,6 +169,10 @@ ALTER TABLE base.managers_half ALTER COLUMN wins SET NOT NULL;
 ALTER TABLE base.managers_half ALTER COLUMN losses SET NOT NULL;
 ALTER TABLE base.managers_half ALTER COLUMN rank SET NOT NULL;
 
+ALTER TABLE base.park_coordinates ADD PRIMARY KEY (park);
+ALTER TABLE base.park_coordinates ALTER COLUMN latitude SET NOT NULL;
+ALTER TABLE base.park_coordinates ALTER COLUMN longitude SET NOT NULL;
+
 ALTER TABLE base.park_names ADD PRIMARY KEY (park, sort_key);
 ALTER TABLE base.park_names ALTER COLUMN name SET NOT NULL;
 

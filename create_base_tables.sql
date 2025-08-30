@@ -279,6 +279,12 @@ CREATE TABLE base.managers_half (
     rank INTEGER
 );
 
+CREATE TABLE base.park_coordinates (
+    park CHARACTER VARYING,
+    latitude NUMERIC,
+    longitude NUMERIC
+);
+
 CREATE TABLE base.park_names (
     park CHARACTER VARYING,
     name CHARACTER VARYING,
