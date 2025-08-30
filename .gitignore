@@ -4,3 +4,4 @@ lahman_*_csv.zip
 imports/readme*.txt
 imports/*.csv
 exports/**/*.csv
+exports/expected/*
