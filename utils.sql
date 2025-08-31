@@ -1,4 +1,4 @@
-DROP SCHEMA if exists utils;
+DROP SCHEMA if exists utils CASCADE;
 CREATE SCHEMA utils;
 
 CREATE VIEW utils.parks_without_coordinates AS
