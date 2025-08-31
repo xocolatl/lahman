@@ -666,7 +666,8 @@ CREATE VIEW lahman."TeamsFranchises" AS
     SELECT
         franchise AS "franchID",
         name AS "franchName",
-        CASE WHEN active THEN 'Y' ELSE 'N' END AS active
+        CASE WHEN active THEN 'Y' ELSE 'N' END AS active,
+        CAST(NULL AS CHARACTER VARYING) AS "NAassoc"
     FROM latest
     WHERE row_num = 1
 ;
