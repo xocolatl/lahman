@@ -1,6 +1,11 @@
 DROP SCHEMA if exists utils CASCADE;
 CREATE SCHEMA utils;
 
+/*
+ * Ideally, all of these views should return zero rows.
+ * Contributions are welcome.
+ */
+
 CREATE VIEW utils.parks_without_coordinates AS
     SELECT DISTINCT ON (p.park)
         p.park,
@@ -16,7 +21,6 @@ CREATE VIEW utils.parks_without_coordinates AS
         SELECT 1
         FROM base.park_coordinates AS pc
         WHERE pc.park = p.park)
-    ORDER BY p.park, hg.first_game, hg.last_game DESC
 ;
 
 CREATE VIEW utils.parks_with_same_coordinates AS
