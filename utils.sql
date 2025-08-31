@@ -19,3 +19,14 @@ CREATE VIEW utils.parks_without_coordinates AS
     ORDER BY p.park, hg.first_game, hg.last_game DESC
 ;
 
+CREATE VIEW utils.parks_with_same_coordinates AS
+    SELECT
+        ARRAY_AGG(p.name) AS parks,
+        pc.latitude,
+        pc.longitude
+    FROM base.parks AS p
+    JOIN base.park_coordinates AS pc ON pc.park = p.park
+    GROUP BY pc.latitude, pc.longitude
+    HAVING COUNT(*) > 1
+;
+
