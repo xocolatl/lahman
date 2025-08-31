@@ -159,15 +159,15 @@ ALTER TABLE base.managers_half
         ON UPDATE CASCADE
 ;
 
-ALTER TABLE base.park_names
-    ADD FOREIGN KEY (park)
-        REFERENCES base.parks
+ALTER TABLE base.park_cities
+    ADD FOREIGN KEY (country, state, city)
+        REFERENCES base.cities
         ON UPDATE CASCADE
 ;
 
-ALTER TABLE base.parks
-    ADD FOREIGN KEY (country, state, city)
-        REFERENCES base.cities
+ALTER TABLE base.park_names
+    ADD FOREIGN KEY (park)
+        REFERENCES base.parks
         ON UPDATE CASCADE
 ;
 

@@ -205,40 +205,40 @@ TRUNCATE base.cities;
 INSERT INTO base.cities TABLE tmpcities;
 
 /* update city references in base.parks */
-UPDATE base.parks
+UPDATE base.park_cities
     SET country = 'Australia'
     WHERE country = 'AU'
 ;
-UPDATE base.parks
+UPDATE base.park_cities
     SET state = 'NSW'
     WHERE (country, state) = ('Australia', 'New South Wales')
 ;
-UPDATE base.parks
+UPDATE base.park_cities
     SET country = 'Canada'
     WHERE country IN ('CA', 'CAN')
 ;
-UPDATE base.parks
+UPDATE base.park_cities
     SET country = 'Dominican Republic'
     WHERE country = 'D.R.'
 ;
-UPDATE base.parks
+UPDATE base.park_cities
     SET country = 'England',
         state = 'London'
     WHERE (country, city) = ('UK', 'London')
 ;
-UPDATE base.parks
+UPDATE base.park_cities
     SET country = 'Japan'
     WHERE country = 'JP'
 ;
-UPDATE base.parks
+UPDATE base.park_cities
     SET country = 'Mexico'
     WHERE country = 'MX'
 ;
-UPDATE base.parks
+UPDATE base.park_cities
     SET country = 'Puerto Rico'
     WHERE country IN ('PR', 'P.R.')
 ;
-UPDATE base.parks
+UPDATE base.park_cities
     SET country = 'USA'
     WHERE country = 'US'
 ;

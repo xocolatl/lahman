@@ -415,12 +415,13 @@ CREATE VIEW lahman."Parks" AS
         string_agg(pn.name, '; ' ORDER BY pn.sort_key) AS parkalias,
         p.park AS parkkey,
         p.name AS parkname,
-        p.city,
-        p.state,
-        p.country
+        NULLIF(pc.city, '-') AS city,
+        NULLIF(pc.state, '-') AS state,
+        pc.country
     FROM base.parks AS p
+    JOIN base.park_cities AS pc ON pc.park = p.park
     LEFT JOIN base.park_names AS pn ON pn.park = p.park
-    GROUP BY p.park
+    GROUP BY p.park, pc.park
 ;
 
 CREATE VIEW lahman."People" AS

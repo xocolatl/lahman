@@ -369,6 +369,15 @@ INSERT INTO base.managers_half
             AND mh."yearID" BETWEEN f.first_year AND f.last_year
 ;
 
+INSERT INTO base.park_cities
+    SELECT
+        parkkey,
+        country,
+        COALESCE(state, '-'),
+        COALESCE(city, '-')
+    FROM import."Parks"
+;
+
 INSERT INTO base.park_names
     SELECT
         p.parkkey,
@@ -381,12 +390,9 @@ INSERT INTO base.park_names
 
 INSERT INTO base.parks
     SELECT
-        parkkey AS park,
-        parkname AS name,
-        country,
-        state,
-        city,
-        "ID" AS id
+        parkkey,
+        parkname,
+        "ID"
     FROM import."Parks"
 ;
 

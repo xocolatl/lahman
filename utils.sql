@@ -10,12 +10,13 @@ CREATE VIEW utils.parks_without_coordinates AS
     SELECT DISTINCT ON (p.park)
         p.park,
         p.name,
-        p.country,
-        p.state,
-        p.city,
+        pc.country,
+        pc.state,
+        pc.city,
         hg.first_game,
         hg.last_game
     FROM base.parks AS p
+    JOIN base.park_cities AS pc ON pc.park = p.park
     JOIN base.home_games AS hg ON hg.park = p.park
     WHERE NOT EXISTS (
         SELECT 1

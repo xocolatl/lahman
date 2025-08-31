@@ -279,6 +279,13 @@ CREATE TABLE base.managers_half (
     rank INTEGER
 );
 
+CREATE TABLE base.park_cities (
+    park CHARACTER VARYING,
+    country CHARACTER VARYING,
+    state CHARACTER VARYING,
+    city CHARACTER VARYING
+);
+
 CREATE TABLE base.park_coordinates (
     park CHARACTER VARYING,
     latitude NUMERIC,
@@ -294,9 +301,6 @@ CREATE TABLE base.park_names (
 CREATE TABLE base.parks (
     park CHARACTER VARYING,
     name CHARACTER VARYING,
-    country CHARACTER VARYING,
-    state CHARACTER VARYING,
-    city CHARACTER VARYING,
     id INTEGER /* used only to reproduce the csv files */
 );
 
