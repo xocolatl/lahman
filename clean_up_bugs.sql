@@ -375,14 +375,47 @@ INSERT INTO base.player_awards_by_position
 ;
 
 /* fixup NA franchises */
-MERGE INTO base.teams AS t
-    USING (SELECT "franchID", "NAassoc"
-           FROM import."TeamsFranchises"
-           WHERE "active" = 'NA'
-             AND "NAassoc" IS NOT NULL
-          ) AS tf ON tf."franchID" = t.franchise
-    WHEN MATCHED
-    THEN UPDATE SET franchise = tf."NAassoc"
+UPDATE base.allstar_players AS ap
+    SET franchise = tf."NAassoc"
+    FROM import."TeamsFranchises" AS tf
+    WHERE ap.franchise = tf."franchID"
+      AND tf."active" = 'NA'
+      AND tf."NAassoc" IS NOT NULL
+;
+UPDATE base.appearances AS a
+    SET franchise = tf."NAassoc"
+    FROM import."TeamsFranchises" AS tf
+    WHERE a.franchise = tf."franchID"
+      AND tf."active" = 'NA'
+      AND tf."NAassoc" IS NOT NULL
+;
+UPDATE base.batting AS b
+    SET franchise = tf."NAassoc"
+    FROM import."TeamsFranchises" AS tf
+    WHERE b.franchise = tf."franchID"
+      AND tf."active" = 'NA'
+      AND tf."NAassoc" IS NOT NULL
+;
+UPDATE base.catching AS c
+    SET franchise = tf."NAassoc"
+    FROM import."TeamsFranchises" AS tf
+    WHERE c.franchise = tf."franchID"
+      AND tf."active" = 'NA'
+      AND tf."NAassoc" IS NOT NULL
+;
+UPDATE base.fielding AS f
+    SET franchise = tf."NAassoc"
+    FROM import."TeamsFranchises" AS tf
+    WHERE f.franchise = tf."franchID"
+      AND tf."active" = 'NA'
+      AND tf."NAassoc" IS NOT NULL
+;
+UPDATE base.fielding_outfield_split AS fos
+    SET franchise = tf."NAassoc"
+    FROM import."TeamsFranchises" AS tf
+    WHERE fos.franchise = tf."franchID"
+      AND tf."active" = 'NA'
+      AND tf."NAassoc" IS NOT NULL
 ;
 UPDATE base.franchises AS f
     SET franchise = tf."NAassoc"
@@ -395,6 +428,76 @@ UPDATE base.home_games AS hg
     SET franchise = tf."NAassoc"
     FROM import."TeamsFranchises" AS tf
     WHERE hg.franchise = tf."franchID"
+      AND tf."active" = 'NA'
+      AND tf."NAassoc" IS NOT NULL
+;
+UPDATE base.managers AS m
+    SET franchise = tf."NAassoc"
+    FROM import."TeamsFranchises" AS tf
+    WHERE m.franchise = tf."franchID"
+      AND tf."active" = 'NA'
+      AND tf."NAassoc" IS NOT NULL
+;
+UPDATE base.managers_half AS mh
+    SET franchise = tf."NAassoc"
+    FROM import."TeamsFranchises" AS tf
+    WHERE mh.franchise = tf."franchID"
+      AND tf."active" = 'NA'
+      AND tf."NAassoc" IS NOT NULL
+;
+UPDATE base.pitching AS p
+    SET franchise = tf."NAassoc"
+    FROM import."TeamsFranchises" AS tf
+    WHERE p.franchise = tf."franchID"
+      AND tf."active" = 'NA'
+      AND tf."NAassoc" IS NOT NULL
+;
+UPDATE base.postseason_batting AS pb
+    SET franchise = tf."NAassoc"
+    FROM import."TeamsFranchises" AS tf
+    WHERE pb.franchise = tf."franchID"
+      AND tf."active" = 'NA'
+      AND tf."NAassoc" IS NOT NULL
+;
+UPDATE base.postseason_catching AS pc
+    SET franchise = tf."NAassoc"
+    FROM import."TeamsFranchises" AS tf
+    WHERE pc.franchise = tf."franchID"
+      AND tf."active" = 'NA'
+      AND tf."NAassoc" IS NOT NULL
+;
+UPDATE base.postseason_fielding AS pf
+    SET franchise = tf."NAassoc"
+    FROM import."TeamsFranchises" AS tf
+    WHERE pf.franchise = tf."franchID"
+      AND tf."active" = 'NA'
+      AND tf."NAassoc" IS NOT NULL
+;
+UPDATE base.postseason_pitching AS pp
+    SET franchise = tf."NAassoc"
+    FROM import."TeamsFranchises" AS tf
+    WHERE pp.franchise = tf."franchID"
+      AND tf."active" = 'NA'
+      AND tf."NAassoc" IS NOT NULL
+;
+UPDATE base.salaries AS s
+    SET franchise = tf."NAassoc"
+    FROM import."TeamsFranchises" AS tf
+    WHERE s.franchise = tf."franchID"
+      AND tf."active" = 'NA'
+      AND tf."NAassoc" IS NOT NULL
+;
+UPDATE base.teams AS th
+    SET franchise = tf."NAassoc"
+    FROM import."TeamsFranchises" AS tf
+    WHERE th.franchise = tf."franchID"
+      AND tf."active" = 'NA'
+      AND tf."NAassoc" IS NOT NULL
+;
+UPDATE base.teams_half AS th
+    SET franchise = tf."NAassoc"
+    FROM import."TeamsFranchises" AS tf
+    WHERE th.franchise = tf."franchID"
       AND tf."active" = 'NA'
       AND tf."NAassoc" IS NOT NULL
 ;
