@@ -6,6 +6,27 @@ CREATE SCHEMA utils;
  * Contributions are welcome.
  */
 
+CREATE VIEW utils.missing_parks AS
+    WITH
+        boundaries (city, min, max) AS (
+            SELECT
+                v.city,
+                MIN(v.number),
+                MAX(v.number)
+            FROM base.parks AS p
+            CROSS JOIN LATERAL (
+                VALUES (SUBSTRING(park FOR 3),
+                        CAST(SUBSTRING(park FROM 4) AS INTEGER))
+            ) AS v (city, number)
+            GROUP BY v.city
+        )
+    SELECT b.city || to_char(g.number, 'FM00') AS park
+    FROM boundaries AS b
+    CROSS JOIN LATERAL generate_series(b.min, b.max) AS g (number)
+    LEFT JOIN base.parks AS p ON p.park = b.city || to_char(g.number, 'FM00')
+    WHERE p.park IS NULL
+;
+
 CREATE VIEW utils.parks_without_coordinates AS
     SELECT DISTINCT ON (p.park)
         p.park,
