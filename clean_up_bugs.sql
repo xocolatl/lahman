@@ -204,7 +204,7 @@ INSERT INTO tmpcities SELECT DISTINCT * FROM base.cities;
 TRUNCATE base.cities;
 INSERT INTO base.cities TABLE tmpcities;
 
-/* update city references in base.parks */
+/* update city references in base.park_citiess */
 UPDATE base.park_cities
     SET country = 'Australia'
     WHERE country = 'AU'

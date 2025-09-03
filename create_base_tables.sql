@@ -84,7 +84,8 @@ CREATE TABLE base.batting (
     sac_hits INTEGER,
     sac_flies INTEGER,
     double_plays INTEGER,
-    /* I don't know what these are, but we need them to reproduce the
+    /*
+     * I don't know what these are, but we need them to reproduce the
      * original data.
      */
     "G_batting" INTEGER,
