@@ -178,6 +178,10 @@ ALTER TABLE base.park_cities ALTER COLUMN country SET NOT NULL;
 ALTER TABLE base.park_cities ALTER COLUMN state SET NOT NULL;
 ALTER TABLE base.park_cities ALTER COLUMN city SET NOT NULL;
 
+ALTER TABLE base.park_factors ADD PRIMARY KEY (park, year, franchise);
+ALTER TABLE base.park_factors ALTER COLUMN batting_factor SET NOT NULL;
+ALTER TABLE base.park_factors ALTER COLUMN pitching_factor SET NOT NULL;
+
 ALTER TABLE base.park_names ADD PRIMARY KEY (park, sort_key);
 ALTER TABLE base.park_names ALTER COLUMN name SET NOT NULL;
 
@@ -391,8 +395,6 @@ ALTER TABLE base.teams ALTER COLUMN errors SET NOT NULL;
 ALTER TABLE base.teams ALTER COLUMN team_double_plays SET NOT NULL;
 ALTER TABLE base.teams ALTER COLUMN fielding_percentage SET NOT NULL;
 -- ALTER TABLE base.teams ALTER COLUMN home_attendance SET NOT NULL;
-ALTER TABLE base.teams ALTER COLUMN batter_park_factor SET NOT NULL;
-ALTER TABLE base.teams ALTER COLUMN pitcher_park_factor SET NOT NULL;
 ALTER TABLE base.teams ALTER COLUMN lahman45_id SET NOT NULL;
 ALTER TABLE base.teams ALTER COLUMN bbref_id SET NOT NULL;
 ALTER TABLE base.teams ALTER COLUMN retrosheet_id SET NOT NULL;

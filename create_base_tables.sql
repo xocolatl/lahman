@@ -292,6 +292,14 @@ CREATE TABLE base.park_coordinates (
     longitude NUMERIC
 );
 
+CREATE TABLE base.park_factors (
+    park CHARACTER VARYING,
+    year INTEGER,
+    franchise CHARACTER VARYING,
+    batting_factor INTEGER,
+    pitching_factor INTEGER
+);
+
 CREATE TABLE base.park_names (
     park CHARACTER VARYING,
     name CHARACTER VARYING,
@@ -554,8 +562,6 @@ CREATE TABLE base.teams (
     errors INTEGER,
     team_double_plays INTEGER,
     fielding_percentage numeric,
-    batter_park_factor INTEGER,
-    pitcher_park_factor INTEGER,
     lahman45_id CHARACTER VARYING,
     bbref_id CHARACTER VARYING,
     retrosheet_id CHARACTER VARYING

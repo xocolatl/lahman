@@ -631,8 +631,8 @@ CREATE VIEW lahman."Teams" AS
         f.team_name AS "name",
         pby.park AS "park",
         hg.attendance AS "attendance",
-        t.batter_park_factor AS "BPF",
-        t.pitcher_park_factor AS "PPF",
+        pf.batting_factor AS "BPF",
+        pf.pitching_factor AS "PPF",
         t.bbref_id AS "teamIDBR",
         t.lahman45_id AS "teamIDlahman45",
         t.retrosheet_id AS "teamIDretro"
@@ -647,6 +647,8 @@ CREATE VIEW lahman."Teams" AS
     ) AS hg (year, franchise, attendance) ON TRUE
     JOIN base.parks_by_year AS pby
         ON (pby.franchise, pby.year) = (t.franchise, t.year)
+    JOIN base.park_factors AS pf
+        ON (pf.year, pf.franchise) = (t.year, t.franchise)
 ;
 
 /* TODO: Simplify this with QUALIFY when available in PostgreSQL. */

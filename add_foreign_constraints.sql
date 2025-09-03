@@ -165,6 +165,12 @@ ALTER TABLE base.park_cities
         ON UPDATE CASCADE
 ;
 
+ALTER TABLE base.park_factors
+    ADD FOREIGN KEY (park)
+        REFERENCES base.parks
+        ON UPDATE CASCADE
+;
+
 ALTER TABLE base.park_names
     ADD FOREIGN KEY (park)
         REFERENCES base.parks

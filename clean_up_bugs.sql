@@ -445,6 +445,13 @@ UPDATE base.managers_half AS mh
       AND tf."active" = 'NA'
       AND tf."NAassoc" IS NOT NULL
 ;
+UPDATE base.park_factors AS pf
+    SET franchise = tf."NAassoc"
+    FROM import."TeamsFranchises" AS tf
+    WHERE pf.franchise = tf."franchID"
+      AND tf."active" = 'NA'
+      AND tf."NAassoc" IS NOT NULL
+;
 UPDATE base.pitching AS p
     SET franchise = tf."NAassoc"
     FROM import."TeamsFranchises" AS tf

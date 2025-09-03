@@ -378,6 +378,20 @@ INSERT INTO base.park_cities
     FROM import."Parks"
 ;
 
+INSERT INTO base.park_factors
+    SELECT hg.parkkey, hg.yearkey, t."franchID", t."BPF", t."PPF"
+    FROM import."Teams" AS t
+    JOIN LATERAL (
+        SELECT hg.parkkey, hg.yearkey
+        FROM import."HomeGames" AS hg
+        WHERE (hg.yearkey, hg.leaguekey, hg.teamkey) = (t."yearID", t."lgID", t."teamID")
+        ORDER BY hg.games DESC
+        FETCH FIRST ROW ONLY
+    ) AS hg ON TRUE
+    WHERE t."BPF" IS NOT NULL
+      AND t."PPF" IS NOT NULL
+;
+
 INSERT INTO base.park_names
     SELECT
         p.parkkey,
@@ -717,8 +731,6 @@ INSERT INTO base.teams
         "E",
         "DP",
         "FP",
-        "BPF",
-        "PPF",
         "teamIDlahman45",
         "teamIDBR",
         "teamIDretro"
