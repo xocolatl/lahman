@@ -361,7 +361,6 @@ ALTER TABLE base.teams ADD PRIMARY KEY (franchise, year);
 -- ALTER TABLE base.teams ALTER COLUMN park SET NOT NULL;
 ALTER TABLE base.teams ALTER COLUMN ranking SET NOT NULL;
 ALTER TABLE base.teams ALTER COLUMN games SET NOT NULL;
--- ALTER TABLE base.teams ALTER COLUMN home_games SET NOT NULL;
 ALTER TABLE base.teams ALTER COLUMN wins SET NOT NULL;
 ALTER TABLE base.teams ALTER COLUMN losses SET NOT NULL;
 -- ALTER TABLE base.teams ALTER COLUMN won_division SET NOT NULL;

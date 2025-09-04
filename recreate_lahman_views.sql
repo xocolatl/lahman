@@ -587,7 +587,10 @@ CREATE VIEW lahman."Teams" AS
         f.division AS "divID",
         t.ranking AS "Rank",
         t.games AS "G",
-        t.home_games AS "Ghome",
+        (SELECT SUM(hg.games)
+         FROM base.home_games AS hg
+         WHERE (hg.year, hg.franchise) = (t.year, t.franchise)
+        ) AS "Ghome",
         t.wins AS "W",
         t.losses AS "L",
         CASE WHEN     t.won_division THEN 'Y'
