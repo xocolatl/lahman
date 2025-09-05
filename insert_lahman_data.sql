@@ -697,7 +697,6 @@ INSERT INTO base.teams
         "yearID",
         "park",
         "Rank" ,
-        "G",
         "W",
         "L",
         CAST("DivWin" AS BOOLEAN),

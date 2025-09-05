@@ -529,7 +529,6 @@ CREATE TABLE base.teams (
     year INTEGER,
     park CHARACTER VARYING,
     ranking INTEGER,
-    games INTEGER,
     wins INTEGER,
     losses INTEGER,
     won_division BOOLEAN,
