@@ -1,19 +1,6 @@
 DROP SCHEMA if exists lahman CASCADE;
 CREATE SCHEMA lahman;
 
-CREATE VIEW base.parks_by_year AS
-    SELECT
-        f.franchise,
-        hg.year,
-        string_agg(p.name, ' / ' ORDER BY hg.first_game) AS park
-    FROM base.franchises AS f
-    JOIN base.home_games AS hg
-        ON hg.franchise = f.franchise
-            AND hg.year BETWEEN f.first_year AND f.last_year
-    JOIN base.parks AS p ON p.park = hg.park
-    GROUP BY f.franchise, hg.year
-;
-
 CREATE VIEW lahman."AllstarFull" AS
     SELECT
         asp.player AS "playerID",
@@ -587,10 +574,7 @@ CREATE VIEW lahman."Teams" AS
         f.division AS "divID",
         t.ranking AS "Rank",
         t.wins + t.losses AS "G",
-        (SELECT SUM(hg.games)
-         FROM base.home_games AS hg
-         WHERE (hg.year, hg.franchise) = (t.year, t.franchise)
-        ) AS "Ghome",
+        hg.games AS "Ghome",
         t.wins AS "W",
         t.losses AS "L",
         CASE WHEN     t.won_division THEN 'Y'
@@ -632,7 +616,7 @@ CREATE VIEW lahman."Teams" AS
         t.team_double_plays AS "DP",
         t.fielding_percentage AS "FP",
         f.team_name AS "name",
-        pby.park AS "park",
+        hg.park_names AS "park",
         hg.attendance AS "attendance",
         pf.batting_factor AS "BPF",
         pf.pitching_factor AS "PPF",
@@ -642,14 +626,18 @@ CREATE VIEW lahman."Teams" AS
     FROM base.franchises AS f
     JOIN base.teams AS t ON t.franchise = f.franchise
         AND t.year BETWEEN f.first_year AND f.last_year
-    LEFT JOIN LATERAL (
-        SELECT year, franchise, NULLIF(SUM(hg.attendance), 0)
+    LEFT JOIN (
+        SELECT
+            hg.year,
+            hg.franchise,
+            NULLIF(SUM(hg.attendance), 0),
+            SUM(hg.games),
+            string_agg(p.name, ' / ' ORDER BY hg.first_game)
         FROM base.home_games AS hg
-        WHERE (year, franchise) = (t.year, t.franchise)
-        GROUP BY year, franchise
-    ) AS hg (year, franchise, attendance) ON TRUE
-    JOIN base.parks_by_year AS pby
-        ON (pby.franchise, pby.year) = (t.franchise, t.year)
+        JOIN base.parks AS p ON p.park = hg.park
+        GROUP BY hg.year, hg.franchise
+    ) AS hg (year, franchise, attendance, games, park_names)
+        ON (hg.year, hg.franchise) = (t.year, t.franchise)
     JOIN base.park_factors AS pf
         ON (pf.year, pf.franchise) = (t.year, t.franchise)
 ;

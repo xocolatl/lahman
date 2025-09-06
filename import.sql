@@ -512,3 +512,4 @@ CREATE TABLE "TeamsHalf" (
 
 \copy "TeamsHalf" from imports/TeamsHalf.csv with csv header
 
+VACUUM (ANALYZE, FREEZE);

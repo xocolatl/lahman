@@ -117,9 +117,8 @@ ALTER TABLE base.fielding_outfield_split ALTER COLUMN assists SET NOT NULL;
 ALTER TABLE base.fielding_outfield_split ALTER COLUMN errors SET NOT NULL;
 ALTER TABLE base.fielding_outfield_split ALTER COLUMN double_plays SET NOT NULL;
 
-ALTER TABLE base.franchises ADD PRIMARY KEY (franchise, first_year);
+ALTER TABLE base.franchises ADD PRIMARY KEY (franchise, first_year, last_year);
 ALTER TABLE base.franchises ADD CHECK (first_year <= last_year);
-ALTER TABLE base.franchises ALTER COLUMN last_year SET NOT NULL;
 ALTER TABLE base.franchises ALTER COLUMN team SET NOT NULL;
 ALTER TABLE base.franchises ALTER COLUMN team_name SET NOT NULL;
 ALTER TABLE base.franchises ALTER COLUMN league SET NOT NULL;
