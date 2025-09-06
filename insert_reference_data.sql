@@ -65,3 +65,7 @@ INSERT INTO base.postseason_rounds (round, description)
 INSERT INTO base.version (year, edition)
     VALUES (2024, 4)
 ;
+
+INSERT INTO base.world_series_ties (year)
+    VALUES (1885), (1890)
+;

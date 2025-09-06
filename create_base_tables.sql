@@ -600,3 +600,7 @@ CREATE TABLE base.version (
     year INTEGER,
     edition INTEGER
 );
+
+CREATE TABLE base.world_series_ties (
+    year INTEGER
+);

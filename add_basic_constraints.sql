@@ -414,3 +414,5 @@ ALTER TABLE base.umpires ALTER COLUMN first_game SET NOT NULL;
 --ALTER TABLE base.umpires ALTER COLUMN last_game SET NOT NULL;
 
 ALTER TABLE base.version ADD PRIMARY KEY (year, edition);
+
+ALTER TABLE base.world_series_ties ADD PRIMARY KEY (year);
