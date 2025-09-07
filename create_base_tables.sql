@@ -42,26 +42,6 @@ CREATE TABLE base.awards (
     award CHARACTER VARYING
 );
 
-CREATE TABLE base.shared_manager_awards (
-    manager CHARACTER VARYING,
-    award CHARACTER VARYING,
-    year INTEGER,
-    league CHARACTER VARYING,
-    points_won INTEGER,
-    points_max INTEGER,
-    votes_first INTEGER
-);
-
-CREATE TABLE base.shared_player_awards (
-    player CHARACTER VARYING,
-    award CHARACTER VARYING,
-    year INTEGER,
-    league CHARACTER VARYING,
-    points_won INTEGER,
-    points_max INTEGER,
-    votes_first INTEGER
-);
-
 CREATE TABLE base.batting (
     player CHARACTER VARYING,
     year INTEGER,
@@ -226,11 +206,6 @@ CREATE TABLE base.hall_of_fame_voters (
     voters CHARACTER VARYING
 );
 
-CREATE TABLE base.handedness (
-    code CHARACTER VARYING,
-    description CHARACTER VARYING
-);
-
 CREATE TABLE base.home_games (
     year INTEGER,
     franchise CHARACTER VARYING,
@@ -240,6 +215,11 @@ CREATE TABLE base.home_games (
     games INTEGER,
     openings INTEGER,
     attendance INTEGER
+);
+
+CREATE TABLE base.handedness (
+    code CHARACTER VARYING,
+    description CHARACTER VARYING
 );
 
 CREATE TABLE base.leagues (
@@ -325,20 +305,36 @@ CREATE TABLE base.people (
     retro_id CHARACTER VARYING
 );
 
-CREATE TABLE base.players (
+CREATE TABLE base.pitching (
     player CHARACTER VARYING,
-    bats CHARACTER VARYING,
-    throws CHARACTER VARYING,
-    first_game DATE,
-    last_game DATE
-);
-
-CREATE TABLE base.schools (
-    school CHARACTER VARYING,
-    name CHARACTER VARYING,
-    country CHARACTER VARYING,
-    state CHARACTER VARYING,
-    city CHARACTER VARYING
+    year INTEGER,
+    stint INTEGER,
+    franchise CHARACTER VARYING,
+    wins INTEGER,
+    losses INTEGER,
+    games INTEGER,
+    started INTEGER,
+    complete_games INTEGER,
+    shutouts INTEGER,
+    saves INTEGER,
+    outs_pitched INTEGER,
+    hits INTEGER,
+    earned_runs INTEGER,
+    home_runs INTEGER,
+    walks INTEGER,
+    strikeouts INTEGER,
+    opp_batting_average NUMERIC,
+    earned_run_average NUMERIC,
+    intentional_walks INTEGER,
+    wild_pitches INTEGER,
+    hit_batsmen INTEGER,
+    balks INTEGER,
+    batters_faced INTEGER,
+    games_finished INTEGER,
+    runs_allowed INTEGER,
+    sac_hits INTEGER,
+    sac_flies INTEGER,
+    double_plays INTEGER
 );
 
 CREATE TABLE base.player_awards (
@@ -377,36 +373,12 @@ CREATE TABLE base.player_awards_by_week (
     week_ending DATE
 );
 
-CREATE TABLE base.pitching (
+CREATE TABLE base.players (
     player CHARACTER VARYING,
-    year INTEGER,
-    stint INTEGER,
-    franchise CHARACTER VARYING,
-    wins INTEGER,
-    losses INTEGER,
-    games INTEGER,
-    started INTEGER,
-    complete_games INTEGER,
-    shutouts INTEGER,
-    saves INTEGER,
-    outs_pitched INTEGER,
-    hits INTEGER,
-    earned_runs INTEGER,
-    home_runs INTEGER,
-    walks INTEGER,
-    strikeouts INTEGER,
-    opp_batting_average NUMERIC,
-    earned_run_average NUMERIC,
-    intentional_walks INTEGER,
-    wild_pitches INTEGER,
-    hit_batsmen INTEGER,
-    balks INTEGER,
-    batters_faced INTEGER,
-    games_finished INTEGER,
-    runs_allowed INTEGER,
-    sac_hits INTEGER,
-    sac_flies INTEGER,
-    double_plays INTEGER
+    bats CHARACTER VARYING,
+    throws CHARACTER VARYING,
+    first_game DATE,
+    last_game DATE
 );
 
 CREATE TABLE base.positions (
@@ -517,6 +489,34 @@ CREATE TABLE base.salaries (
     year INTEGER,
     franchise CHARACTER VARYING,
     salary NUMERIC
+);
+
+CREATE TABLE base.schools (
+    school CHARACTER VARYING,
+    name CHARACTER VARYING,
+    country CHARACTER VARYING,
+    state CHARACTER VARYING,
+    city CHARACTER VARYING
+);
+
+CREATE TABLE base.shared_manager_awards (
+    manager CHARACTER VARYING,
+    award CHARACTER VARYING,
+    year INTEGER,
+    league CHARACTER VARYING,
+    points_won INTEGER,
+    points_max INTEGER,
+    votes_first INTEGER
+);
+
+CREATE TABLE base.shared_player_awards (
+    player CHARACTER VARYING,
+    award CHARACTER VARYING,
+    year INTEGER,
+    league CHARACTER VARYING,
+    points_won INTEGER,
+    points_max INTEGER,
+    votes_first INTEGER
 );
 
 CREATE TABLE base.states (
