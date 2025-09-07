@@ -462,7 +462,7 @@ INSERT INTO base.pitching
 ;
 
 INSERT INTO base.player_awards
-    SELECT
+    SELECT DISTINCT
         "playerID",
         "awardID",
         "yearID",

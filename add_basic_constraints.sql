@@ -226,12 +226,7 @@ ALTER TABLE base.pitching ALTER COLUMN runs_allowed SET NOT NULL;
 -- ALTER TABLE base.pitching ALTER COLUMN sac_flies SET NOT NULL;
 -- ALTER TABLE base.pitching ALTER COLUMN double_plays SET NOT NULL;
 
-/*
 ALTER TABLE base.player_awards ADD PRIMARY KEY (player, award, year, league);
-
-ERROR:  could not create unique index "player_awards_pkey"
-DETAIL:  Key (player, award, year, league)=(claseem01, Reliever of the Month, 2022, AL) is duplicated.
-*/
 ALTER TABLE base.player_awards ALTER COLUMN player SET NOT NULL;
 ALTER TABLE base.player_awards ALTER COLUMN award SET NOT NULL;
 ALTER TABLE base.player_awards ALTER COLUMN year SET NOT NULL;
